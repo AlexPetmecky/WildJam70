@@ -11,9 +11,9 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 
 func _physics_process(delta):
-	var move_input = Input.get_axis("down", "up")
+	var move_input = Input.get_axis("up", "down")
 	var rotation_direction = Input.get_axis("left", "right")
-	velocity = transform.x * move_input * SPEED
+	velocity = transform.y * move_input * SPEED
 	rotation += rotation_direction * ROTATION_SPEED * delta
 	
 	
