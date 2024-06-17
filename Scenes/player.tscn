@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bqskgd0p4cnu7"]
 
-[ext_resource type="Script" path="res://Scenes/player.gd" id="1_m6mp7"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_47lvq"]
 [ext_resource type="Texture2D" uid="uid://ba5gjyxkhvec8" path="res://colored.png" id="2_cq0pv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g51cf"]
@@ -29,7 +29,7 @@ animations = [{
 size = Vector2(16, 16)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
-script = ExtResource("1_m6mp7")
+script = ExtResource("1_47lvq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xuwat")
