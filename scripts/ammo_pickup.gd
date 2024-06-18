@@ -1,6 +1,7 @@
 extends Area2D
 
 
+@onready var game_manager = %GameManager
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#var gameManager = GameManager()
@@ -12,7 +13,7 @@ func _process(delta):
 	pass
 	
 func _on_body_entered(otherBody):
-	#gameManager.add
-	
+	game_manager.add_ammo(1)
+
 	queue_free()
 	

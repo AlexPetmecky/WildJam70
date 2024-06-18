@@ -1,8 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://dl5nefn66vqyk"]
+[gd_scene load_steps=9 format=3 uid="uid://dl5nefn66vqyk"]
 
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_7xry8"]
 [ext_resource type="Texture2D" uid="uid://ba5gjyxkhvec8" path="res://colored.png" id="1_a77aa"]
 [ext_resource type="PackedScene" uid="uid://bqskgd0p4cnu7" path="res://Scenes/player.tscn" id="2_nw66l"]
 [ext_resource type="Script" path="res://scripts/Camera2D.gd" id="3_sjpu3"]
+[ext_resource type="PackedScene" uid="uid://dpc10hgu3aa6u" path="res://Scenes/ammo_pickup.tscn" id="5_prfjm"]
+
+[sub_resource type="GDScript" id="GDScript_aw8lp"]
+script/source = "extends Node
+static var playerAmmo = 0
+
+func addAmmo(amount):
+	playerAmmo = playerAmmo + amount
+
+"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d7rjg"]
 texture = ExtResource("1_a77aa")
@@ -40,6 +51,11 @@ physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_d7rjg")
 
 [node name="Game" type="Node2D"]
+script = SubResource("GDScript_aw8lp")
+
+[node name="GameManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_7xry8")
 
 [node name="TileMap" type="TileMap" parent="."]
 texture_repeat = 1
@@ -55,3 +71,5 @@ position = Vector2(0, -1)
 zoom = Vector2(3.25, 3.25)
 position_smoothing_enabled = true
 script = ExtResource("3_sjpu3")
+
+[node name="AmmoPickup" parent="." instance=ExtResource("5_prfjm")]
