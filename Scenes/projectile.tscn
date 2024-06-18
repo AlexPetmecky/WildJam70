@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://cyeotsklhqw1p"]
+
+[ext_resource type="Script" path="res://projectile.gd" id="1_sinee"]
+[ext_resource type="Texture2D" uid="uid://cyibbai75i0b4" path="res://Standard_Bullet-Sheet-Sheet.png" id="2_o4rbi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_433x1"]
+atlas = ExtResource("2_o4rbi")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8wwa"]
+atlas = ExtResource("2_o4rbi")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gq3v8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_433x1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8wwa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nk7if"]
+radius = 2.23607
+
+[node name="Projectile" type="CharacterBody2D"]
+script = ExtResource("1_sinee")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_gq3v8")
+frame_progress = 0.698563
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_nk7if")
