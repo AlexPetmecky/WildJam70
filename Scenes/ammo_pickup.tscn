@@ -1,5 +1,8 @@
-[gd_scene format=3 uid="uid://dpc10hgu3aa6u"]
+[gd_scene load_steps=2 format=3 uid="uid://dpc10hgu3aa6u"]
+
+[ext_resource type="Script" path="res://scripts/ammo_pickup.gd" id="1_jx05f"]
 
 [node name="AmmoPickup" type="Area2D"]
+script = ExtResource("1_jx05f")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
