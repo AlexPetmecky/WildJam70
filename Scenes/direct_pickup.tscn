@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4edpu033fg8b"]
+
+[ext_resource type="Script" path="res://Scenes/direct_pickup.gd" id="1_a1pbx"]
+
+[node name="directPickup" type="AnimatedSprite2D"]
+script = ExtResource("1_a1pbx")
