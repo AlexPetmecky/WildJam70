@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cyeotsklhqw1p"]
 
 [ext_resource type="Script" path="res://scripts/projectile.gd" id="1_sinee"]
-[ext_resource type="Texture2D" path="res://Standard_Bullet-Sheet-Sheet.png" id="2_o4rbi"]
+[ext_resource type="Texture2D" uid="uid://cyibbai75i0b4" path="res://Standard_Bullet-Sheet-Sheet.png" id="2_o4rbi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_433x1"]
 atlas = ExtResource("2_o4rbi")
@@ -29,6 +29,8 @@ animations = [{
 radius = 2.23607
 
 [node name="Projectile" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 0
 script = ExtResource("1_sinee")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

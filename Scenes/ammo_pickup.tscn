@@ -1,8 +1,33 @@
-[gd_scene load_steps=2 format=3 uid="uid://dpc10hgu3aa6u"]
+[gd_scene load_steps=6 format=3 uid="uid://dpc10hgu3aa6u"]
 
 [ext_resource type="Script" path="res://scripts/ammo_pickup.gd" id="1_jx05f"]
+[ext_resource type="Texture2D" uid="uid://duvxtttm4xs3" path="res://farmer_sprites.png" id="2_sdkp5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i78io"]
+atlas = ExtResource("2_sdkp5")
+region = Rect2(82, 119, 12, 9)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w8djh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i78io")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n1jnm"]
+size = Vector2(12, 10)
 
 [node name="AmmoPickup" type="Area2D"]
 script = ExtResource("1_jx05f")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_w8djh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_n1jnm")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

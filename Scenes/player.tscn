@@ -1,39 +1,70 @@
-[gd_scene load_steps=7 format=3 uid="uid://bqskgd0p4cnu7"]
+[gd_scene load_steps=9 format=3 uid="uid://bqskgd0p4cnu7"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_47lvq"]
-[ext_resource type="Texture2D" uid="uid://ba5gjyxkhvec8" path="res://colored.png" id="2_cq0pv"]
+[ext_resource type="Texture2D" uid="uid://duvxtttm4xs3" path="res://farmer_sprites.png" id="2_qvigu"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_g51cf"]
-atlas = ExtResource("2_cq0pv")
-region = Rect2(408, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ol88r"]
+atlas = ExtResource("2_qvigu")
+region = Rect2(47, 45, 18, 35)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_536hj"]
-atlas = ExtResource("2_cq0pv")
-region = Rect2(408, 17, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_nqboj"]
+atlas = ExtResource("2_qvigu")
+region = Rect2(118, 45, 27, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kj114"]
+atlas = ExtResource("2_qvigu")
+region = Rect2(79, 45, 27, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghlgw"]
+atlas = ExtResource("2_qvigu")
+region = Rect2(47, 90, 18, 38)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xuwat"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_g51cf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_536hj")
+"texture": SubResource("AtlasTexture_ol88r")
 }],
 "loop": true,
-"name": &"default",
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nqboj")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kj114")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ghlgw")
+}],
+"loop": true,
+"name": &"up",
 "speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pbfl6"]
-size = Vector2(16, 16)
+size = Vector2(16, 34)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_47lvq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 5
 sprite_frames = SubResource("SpriteFrames_xuwat")
-frame_progress = 0.147477
+animation = &"left"
+autoplay = "Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_pbfl6")

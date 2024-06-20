@@ -5,6 +5,11 @@ extends CharacterBody2D
 
 const SPEED = 50.0
 
+#variables for game mechanics
+var ammo = 5
+var paranoia = 0
+
+
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -19,11 +24,11 @@ func _physics_process(delta):
 	var input := Vector2(x_axis,y_axis)
 	
 	position += input * SPEED * delta
-	
+	move_and_slide()
 
 func _process(delta):
 	direction_check()
-	if (Input.is_action_just_pressed("shoot")):
+	if (Input.is_action_just_pressed("shoot") and ammo > 0):
 		shoot()
 		
 func shoot():
@@ -32,6 +37,7 @@ func shoot():
 	bullet.rotation = marker_2d.global_rotation
 	bullet.get_direction(shoot_direction)
 	get_parent().add_child(bullet)
+	ammo -= 1
 	print_debug("shooting")
 	
 	
@@ -39,10 +45,18 @@ func shoot():
 func direction_check():
 	if Input.is_action_pressed("up"):
 		shoot_direction = Vector2(0,-1)
+		animated_sprite_2d.play("up")
 	elif Input.is_action_pressed("down"):
 		shoot_direction = Vector2(0,1)
+		animated_sprite_2d.play("Idle")
 	elif Input.is_action_pressed("left"):
 		shoot_direction = Vector2(-1,0)
+		animated_sprite_2d.play("left")
 	elif Input.is_action_pressed("right"):
 		shoot_direction = Vector2(1,0)
+		animated_sprite_2d.play("right")
+		
+func add_ammo():
+	print_debug("Ammo Added")
+	ammo += 5
 	
