@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cv44glx3y6igj"]
+
+[ext_resource type="Script" path="res://scripts/AmmoLabel.gd" id="1_lprx1"]
+
+[node name="Label" type="Label"]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("1_lprx1")
