@@ -60,3 +60,5 @@ func add_ammo():
 	print_debug("Ammo Added")
 	ammo += 5
 	
+func add_paranoia(amt):
+	paranoia += amt

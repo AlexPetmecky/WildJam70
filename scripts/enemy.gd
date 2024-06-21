@@ -21,7 +21,7 @@ func _on_area_entered(area):
 
 #Check player collision
 func _on_body_entered(body):
-	player.add_paranoia(1)
+	player.add_paranoia(10)
 	#change to animation (brackeys)
 	queue_free()
 

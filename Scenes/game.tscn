@@ -1,11 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://dl5nefn66vqyk"]
+[gd_scene load_steps=13 format=3 uid="uid://dl5nefn66vqyk"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_7xry8"]
 [ext_resource type="Texture2D" uid="uid://ba5gjyxkhvec8" path="res://colored.png" id="1_a77aa"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_kh2hq"]
 [ext_resource type="PackedScene" uid="uid://bqskgd0p4cnu7" path="res://Scenes/player.tscn" id="2_nw66l"]
 [ext_resource type="Script" path="res://scripts/Camera2D.gd" id="3_sjpu3"]
 [ext_resource type="PackedScene" uid="uid://dpc10hgu3aa6u" path="res://Scenes/ammo_pickup.tscn" id="5_prfjm"]
 [ext_resource type="PackedScene" uid="uid://cv44glx3y6igj" path="res://Scenes/AmmoLabel.tscn" id="6_4vaes"]
+[ext_resource type="PackedScene" uid="uid://db76ki5syf5ie" path="res://Scenes/enemy.tscn" id="6_lh5j4"]
 [ext_resource type="PackedScene" uid="uid://cdjq6fru7e1a2" path="res://Scenes/paranoiaBar.tscn" id="6_wtmcn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d7rjg"]
@@ -43,7 +45,14 @@ separation = Vector2i(1, 1)
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_d7rjg")
 
+[sub_resource type="Curve2D" id="Curve2D_neb6y"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -193, -114, 0, 0, 0, 0, 200, -113, 0, 0, 0, 0, 201, 111, 0, 0, 0, 0, -196, 111, 0, 0, 0, 0, -193, -114)
+}
+point_count = 5
+
 [node name="Game" type="Node2D"]
+script = ExtResource("1_kh2hq")
 
 [node name="GameManager" type="Node" parent="."]
 unique_name_in_owner = true
@@ -64,11 +73,28 @@ zoom = Vector2(3.25, 3.25)
 position_smoothing_enabled = true
 script = ExtResource("3_sjpu3")
 
+[node name="Path2D" type="Path2D" parent="Player"]
+curve = SubResource("Curve2D_neb6y")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Player/Path2D"]
+unique_name_in_owner = true
+position = Vector2(-193, -114)
+rotation = 0.00254452
+
 [node name="AmmoPickup" parent="." instance=ExtResource("5_prfjm")]
 position = Vector2(33, 34)
+
+[node name="Enemy" parent="." instance=ExtResource("6_lh5j4")]
+position = Vector2(19, 16)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ProgressBar" parent="CanvasLayer" instance=ExtResource("6_wtmcn")]
 
 [node name="Label" parent="." instance=ExtResource("6_4vaes")]
+
+[node name="TimerSpawner" type="Timer" parent="."]
+wait_time = 0.8
+autostart = true
+
+[connection signal="timeout" from="TimerSpawner" to="." method="_on_timer_spawner_timeout"]
